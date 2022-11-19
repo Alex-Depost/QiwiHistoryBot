@@ -28,7 +28,7 @@ def GenerateMessage(PaymentInfo):
     res = "На сумму {}\n" \
           "С {}\n" \
           "От {}\n" \
-          "Комментарий: {}".format(PaymentInfo['total']['currency'], PaymentInfo['view']['title'],
+          "Комментарий: {}".format(PaymentInfo['total']['amount'], PaymentInfo['view']['title'],
                                    PaymentInfo['view']['account'], PaymentInfo['comment'])
     return res
 
