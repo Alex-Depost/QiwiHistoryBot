@@ -25,24 +25,23 @@ def payment_history_last(my_Login, api_access_token, rows_num):
 
 
 def GenerateMessage(PaymentInfo):
-    res = "На сумму {}\n" \
-          "С {}\n" \
-          "От {}\n" \
+    res = "✅Новый перевод✅" \
+          "На сумму: {}\n" \
+          "С: {}\n" \
+          "От: {}\n" \
           "Комментарий: {}".format(PaymentInfo['total']['amount'], PaymentInfo['view']['title'],
                                    PaymentInfo['view']['account'], PaymentInfo['comment'])
     return res
 
 
 LastPay = payment_history_last(Login, Token, 1)['data'][0]
-
+print(LastPay)
 while True:
     NewPay = payment_history_last(Login, Token, 1)['data'][0]
     if LastPay['txnId'] != NewPay['txnId']:
         if NewPay['type'] == 'IN' and NewPay['status'] == 'SUCCESS':
             for elem in users:
-                bot.send_message(elem, "✅Новый перевод✅")
                 bot.send_message(elem, GenerateMessage(NewPay))
-                print("✅Новый перевод✅")
-                print(GenerateMessage(NewPay))
+                print("✅Новый перевод✅\n", GenerateMessage(NewPay))
             LastPay = NewPay
     sleep(1)
