@@ -25,7 +25,7 @@ def payment_history_last(my_Login, api_access_token, rows_num):
 
 
 def GenerateMessage(PaymentInfo):
-    res = "✅Новый перевод✅" \
+    res = "✅Новый перевод✅\n" \
           "На сумму: {}\n" \
           "С: {}\n" \
           "От: {}\n" \
